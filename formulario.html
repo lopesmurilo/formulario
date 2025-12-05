@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="form.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola Nova Esperança</title>
+</head>
+<body>
+    <form action="relatorio.html" 
+        id="form-cadastro" class="card">
+        <h1>Escola Nova Esperança</h1>
+        <h3>Cadastro de Novo Aluno</h3>
+        <hr style="border: 0; border-top: 1px solid #4caf50; margin-bottom: 25px;">
+
+        <label for="nome">Nome Completo do Aluno:</label>
+        <input type="text" name="nome" id="nome" required autofocus>
+
+        <label for="email">Email do Responsável:</label>
+        <input type="email" name="email" id="email" required placeholder="responsavel@email.com">
+
+        <label for="telefone">Telefone do Responsável:</label>
+        <input type="tel" name="telefone" id="telefone" required>
+
+        <label for="dt-nasc">Data de Nascimento do Aluno:</label>
+        <input type="date" name="dt-nasc" id="dt-nasc" required>
+
+        <label for="foto">Foto do Aluno:</label>
+        <input type="file" name="foto" id="foto" required>
+
+        <fieldset>
+            <legend>Série para Matrícula</legend>
+            <label class="opcao-inline"><input type="radio" name="serie" value="1º Ano" required> 1º Ano</label>
+            <label class="opcao-inline"><input type="radio" name="serie" value="2º Ano"> 2º Ano</label>
+            <label class="opcao-inline"><input type="radio" name="serie" value="3º Ano"> 3º Ano</label>
+            <label class="opcao-inline"><input type="radio" name="serie" value="4º Ano"> 4º Ano</label>
+            <label class="opcao-inline"><input type="radio" name="serie" value="5º Ano"> 5º Ano</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Turno Preferido</legend>
+            <label class="opcao-inline"><input type="checkbox" name="turno" value="Manhã"> Manhã</label>
+            <label class="opcao-inline"><input type="checkbox" name="turno" value="Tarde"> Tarde</label>
+            <label class="opcao-inline"><input type="checkbox" name="turno" value="Integral"> Integral</label>
+        </fieldset>
+
+        <label for="objetivo">Motivo da Matrícula:</label>
+        <select name="objetivo" id="objetivo" required>
+            <option value="">Selecione...</option>
+            <option value="Início da escolarização">Início da escolarização</option>
+            <option value="Mudança de escola">Mudança de escola</option>
+            <option value="Reforço escolar">Reforço escolar</option>
+            <option value="Outros">Outros...</option>
+        </select>
+
+        <label for="informacoes">Informações Importantes (Alergias, necessidades especiais, etc):</label>
+        <textarea name="informacoes" id="informacoes" rows="4" maxlength="200"></textarea>
+
+        <button type="submit" class="btn-enviar">Gerar Relatório</button>
+        
+        <br><br>
+        <a href="index.html" style="display:block; text-align:center; color:#2e7d32; text-decoration:none;">&larr; Voltar ao Menu</a>
+    </form> 
+
+    <script>
+        document.getElementById('form-cadastro').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const inputFoto = document.getElementById('foto');
+            let nomeArquivoFoto = "Nenhuma foto selecionada";
+            if (inputFoto.files.length > 0) {
+                nomeArquivoFoto = inputFoto.files[0].name;
+            }
+
+            const turnosMarcados = Array.from(document.querySelectorAll('input[name="turno"]:checked'))
+                                        .map(cb => cb.value).join(', ');
+
+            const serieSelecionada = document.querySelector('input[name="serie"]:checked')?.value || "Não informado";
+
+            const dados = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
+                nascimento: document.getElementById('dt-nasc').value,
+                foto: nomeArquivoFoto,
+                serie: serieSelecionada,
+                turno: turnosMarcados || "Nenhum turno selecionado",
+                objetivo: document.getElementById('objetivo').value,
+                obs: document.getElementById('informacoes').value || "Nenhuma"
+            };
+
+            localStorage.setItem('dadosAluno', JSON.stringify(dados));
+            window.location.href = 'relatorio.html';
+        });
+    </script>
+</body>
+</html>

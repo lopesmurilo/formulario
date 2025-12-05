@@ -1,0 +1,137 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    background-color: #e8f5e9; /* Verde MUITO suave para o fundo */
+    margin: 0;
+    padding: 20px;
+}
+
+/* O cartão permanece branco para destacar o conteúdo */
+.card {
+    max-width: 550px;
+    width: 100%;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    border-top: 5px solid #2e7d32; /* Verde mais forte */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Card mais largo usado no menu/relatório se necessário */
+.card-wide {
+    max-width: 900px;
+}
+
+h1 {
+    color: #1b5e20; /* Verde escuro */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+h3 {
+    text-align: center;
+    color: #444;
+    font-weight: normal;
+    margin-top: 0;
+}
+
+/* Inputs e elementos de formulário */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f5f5f5;
+}
+
+/* Foco verde */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border: 1px solid #66bb6a;
+    box-shadow: 0 0 5px rgba(102, 187, 106, 0.5);
+    background-color: #fff;
+}
+
+/* Organiza inputs lado a lado */
+.row-dupla {
+    display: flex;
+    gap: 20px;
+}
+
+.campo-metade {
+    flex: 1;
+}
+
+/* Fieldset com cores suaves de verde */
+fieldset {
+    border: 1px solid #a5d6a7;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f1f8e9; /* Verde claro */
+}
+
+legend {
+    color: #2e7d32;
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+.opcao-inline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.opcao-inline input {
+    width: auto;
+    margin-right: 10px;
+    accent-color: #2e7d32; /* Muda a cor da marcação */
+}
+
+/* Botão de enviar em verde */
+.btn-enviar, button.btn-enviar {
+    width: 100%;
+    border: none;
+    background-color: #43a047; /* Verde vibrante */
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-enviar:hover, button.btn-enviar:hover {
+    background-color: #1b5e20; /* Verde bem escuro */
+}

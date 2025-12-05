@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="form.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conferência - Escola Nova Esperança</title>
+    <style>
+        .item-relatorio {
+            border-bottom: 1px solid #4caf50;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .item-relatorio strong {
+            color: #2e7d32;
+        }
+        .btn-voltar {
+            background-color: #ccc;
+            color: #333;
+            margin-top: 10px;
+        }
+        .btn-voltar:hover {
+            background-color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Confira os Dados do Aluno</h1>
+        <h3>Verifique antes de finalizar a matrícula.</h3>
+        <hr style="border: 0; border-top: 1px solid #4caf50; margin-bottom: 25px;">
+
+        <div id="lista-dados"></div>
+
+        <br>
+        <div class="row-dupla">
+            <button onclick="history.back()" class="btn-enviar btn-voltar">Voltar / Editar</button>
+            <button onclick="finalizarCadastro()" class="btn-enviar">Confirmar Matrícula</button>
+        </div>
+    </div>
+
+    <script>
+        const dados = JSON.parse(localStorage.getItem('dadosAluno'));
+
+        if (dados) {
+            const lista = document.getElementById('lista-dados');
+            
+            const criarLinha = (label, valor) => {
+                return `<div class="item-relatorio">
+                            <strong>${label}:</strong> 
+                            <span style="text-align: right; margin-left: 10px;">${valor}</span>
+                        </div>`;
+            };
+
+            lista.innerHTML = 
+                criarLinha('Nome', dados.nome) +
+                criarLinha('Email do Responsável', dados.email) +
+                criarLinha('Telefone', dados.telefone) +
+                criarLinha('Nascimento', dados.nascimento) +
+                criarLinha('Foto (Arquivo)', dados.foto) +
+                criarLinha('Série', dados.serie) +
+                criarLinha('Turno', dados.turno) +
+                criarLinha('Motivo da Matrícula', dados.objetivo) +
+                criarLinha('Informações Importantes', dados.obs);
+
+        } else {
+            document.getElementById('lista-dados').innerHTML = "<p>Nenhum dado encontrado.</p>";
+        }
+
+        function finalizarCadastro() {
+            localStorage.removeItem('dadosAluno');
+            window.location.href = 'enviado.html';
+        }
+    </script>
+</body>
+</html>
